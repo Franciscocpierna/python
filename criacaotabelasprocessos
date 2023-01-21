@@ -1,0 +1,32 @@
+import mysql.connector
+con = mysql.connector.connect(host='localhost',database='processos',user='root',password='')
+if con.cursor():
+    db_info = con.get_server_info()
+    print("conectado ao servidor MySql versão ",db_info)
+    cursor = con.cursor()
+    cursor.execute("select database();")
+    linha = cursor.fetchone()
+    print('conectado ao Banco de dados', linha)
+    sql= ('''
+      create table if not exists procpar (
+        codigo varchar(5),
+        nome   varchar(50),
+        num  varchar(1), 
+        hora varchar(1));
+      '''
+       )#criar a tabela
+    cursor.execute(sql)
+    sql= ('''
+      LOAD DATA LOCAL INFILE "C:/windows7/siodrau/TABTA3/PROCPAR.csv"
+      INTO TABLE procpar
+      FIELDS TERMINATED BY ';'
+      ENCLOSED BY '"'
+      LINES TERMINATED BY '\n'
+      IGNORE 1 ROWS; 
+      '''
+       )#importar uma tabela do excel
+    cursor.execute(sql)
+    if con.is_connected():
+      cursor.close()
+      con.close()
+      print("conexão ao MySql foi encerrada")
