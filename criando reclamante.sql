@@ -57,23 +57,23 @@ repl field_name with 'fisico',field_type with 'C',field_len  with 12,;
  use
  eras tempo.dbf
  retu .t.*/
- create table   recla(
+ create table if not exists recla(
      processo varchar(10) not null,
      junta varchar(2) not null,
      cidade   varchar(5),
- 'nrecla',field_type with 'N',field_len  with 5,
- 'situacao'   ,field_type with 'C',field_len  with 1,
- 'reclamante' ,field_type with 'C',field_len  with 40,
- 'admissao',field_type with 'D',field_len  with 08,
- 'demissao',field_type with 'D',field_len  with 08,
-  `datsal`,field_type with 'D',field_len  with 08,
-  'd_base',field_type with 'D',field_len  with 08,
-  'd_basev',field_type with 'D',field_len  with 08,
-  'salario',field_type with 'N',field_len  with 14,
-  'sallanc',field_type with 'N',field_len  with 14,
-  'datsys',field_type with 'D',field_len  with 8,
-  'portador',field_type with 'C',field_len  with 15,
-  'fisico',field_type with 'C',field_len  with 12,
+     nrecla   smallint not null,
+     situacao varchar(1),
+     reclamante varchar(40) not null,
+     admissao date,
+     demissao date,
+     datsal date,
+     d_base date,
+     d_basev date,
+     salario decimal(14,2),
+     sallanc decimal(14,2),
+     datsys date, 
+     portador varchar(15),
+	 fisico varchar(12)
  )default charset = utf8;  
  
  
