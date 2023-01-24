@@ -11,7 +11,7 @@
      dexe date,
      v_alcada decimal(14,2),
      ganho tinyint,
-     dura tinyint,
+	 dura tinyint,
      mens varchar(1),
      valest decimal(14,2),
 	 valesti decimal(14,2),
