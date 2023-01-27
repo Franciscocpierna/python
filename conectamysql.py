@@ -7,10 +7,7 @@ if con.cursor():
     cursor.execute("select database();")
     linha = cursor.fetchone()
     print('conectado ao Banco de dados', linha)
-sql= ('''
-select * from cursos
-''')
-
+sql= ('select * from cursos')
 cursor.execute(sql)
 for x in cursor:
     print(x)
