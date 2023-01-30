@@ -24,6 +24,7 @@ E vamos fazer a subtração:
 11 - 0 = 11
 Como o valor é igual ou maior que 10, o último dígito é 0.
 '''
+from time import sleep 
 def continua():
     while True:
         try:
@@ -50,9 +51,39 @@ def leiaStr(msg):
             print('\033[31mdigite opção valida S ou N: \033[m')
     else:
         if len(n) != 11 or not n.isnumeric():
+             print(f'vc digitou {n}')
              print('\033[31mdigite número valido\033[m')
         else:
              return n
     
 verifica=leiaStr('Entre com número inteiro:.')
+nove=0
+calulaprimeiro=0
+calculasegundo=0
 
+soma=0
+for x in range(10,1,-1): #de 10 até 2
+   soma=soma + int(verifica[nove]) *  x
+   nove+=1
+
+calculaprimeiro=11-(soma % 11)
+if calculaprimeiro >=10:
+    calclaprimeiro=0
+digitos=''
+soma=0
+nove=0
+verifica = verifica[0:9]+str(calculaprimeiro)
+
+for x in range(11,1,-1): #de 11 até 2
+   soma=soma + int(verifica[nove]) *  x
+   nove+=1
+calculasegundo=11-(soma % 11)
+if calculasegundo >=10:
+    calculasegundo=0
+digitos=str(calculaprimeiro)+str(calculasegundo)
+verifica = verifica+str(calculasegundo)
+if digitos==verifica[9:11]:
+  print(f'digito verificador calculado é valido' )      
+verifica = verifica[0:9]+'-'+str(calculaprimeiro)+str(calculasegundo)
+
+print(f'digito verificador calculado é = {digitos}' )
