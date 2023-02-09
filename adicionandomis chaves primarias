@@ -7,9 +7,7 @@ if con.cursor():
     cursor.execute("select database();")
     linha = cursor.fetchone()
     print('conectado ao Banco de dados', linha)
-    sql= ('alter table acao primary key(codigo)');  
-    cursor.execute(sql)
-    sql= ('alter table recla add primary key(processo, junta, cidade, nrecla)'); #chave primaria composta
+    sql=('alter table tabsit add primary key(codigo)');
     cursor.execute(sql)
     if con.is_connected():
       cursor.close()
