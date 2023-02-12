@@ -1,0 +1,100 @@
+
+
+
+'''O CNPJ tem a configuração XX.XXX.XXX/XXXX-XX, onde os primeiros oito dígitos são o número-base, os quatro seguintes o número de ordem das filiais da empresa, o penúltimo é o DV (Dígito de Verificação) módulo 11 (v. abaixo) dos doze dígitos anteriores e o último é o DV módulo 11 dos treze dígitos anteriores.
+Outra particularidade é que o oitavo dígito era DV módulo 10 (v. abaixo) dos sete anteriores, isso para os CNPJ emitidos anteriormente a 1993.
+A partir daí, a regra foi abandonada, pois o oitavo dígito foi incorporado, para ampliar a capacidade de cadastros (de 10 milhões, a capacidade passou para 100 milhões de números possíveis).
+exemplo: 18781203000128
+1    8    7    8   1   2   0   3   0   0   0   1               
+x    x    x    x   x   x   x    x   x   x   x   x               
+6    7    8    9   2   3   4    5   6   7   8   9            
+-   --   --   --   -   -   -  ---   -   -   -   -                   
+6 + 56 + 56 + 72 + 2 + 6 + 0 + 15 + 0 + 0 + 0 + 9 = 222 ÷ 11 = 20, com resto 2
+
+
+1    8    7    8   1   2   0    3   0   0   0   1    2
+x    x    x    x   x   x   x    x   x   x   x   x    x
+5    6    7    8   9   2   3    4   5   6   7   8    9
+-   --   --   --   -   -   -   --   -   -   -   -   --
+5 + 48 + 49 + 64 + 9 + 4 + 0 + 12 + 0 + 0 + 0 + 8 + 18 = 217 ÷ 11 = 19, com resto 8
+
+Portanto, CNPJ+DV = 18.781.203/0001-28
+
+'''
+def continua():
+    while True:
+        try:
+            r=str(input('quer continuar:[S/N] ').upper()[0])
+        except (KeyboardInterrupt):
+            print('\n\033[31mErro: interrompeu execução\033[m')
+            return 'N'
+        except IndexError:
+            print('\033[31mdigite opção valida S ou N: \033[m')
+        else:
+            if r not in "SN":
+                 print('\033[31mdigite opção valida S ou N: \033[m')
+            else:
+                 return r
+
+
+def leiaStr(msg):
+  while True:
+    try:
+       n=str(input(msg))
+    except (KeyboardInterrupt):
+        print('\n\033[31mErro: interrompeu execução\033[m')
+    except IndexError:
+            print('\033[31mdigite opção valida S ou N: \033[m')
+    else:
+        if len(n) != 14 or not n.isnumeric():
+             print('\033[31mdigite número valido\033[m')
+        else:
+             return n
+    
+while True:    
+ verifica=leiaStr('Digite o número sem ponto e sem traço:') # obs fiz a lógica assimd igitando números direto, só mudar a lógica  
+ verifica1=verifica[12:14]
+ indice=0
+ calulaprimeiro=0
+ calculasegundo=0
+
+ soma=0
+ 
+ # XX.XXX.XXX/XXXX-XX
+ for x in range(6,10,1): # 6,7,8 e 9 
+   soma=soma + int(verifica[indice]) *  x
+   indice+=1
+   
+   
+ for  x in range(2,10,1): #2,3,4,5,6,7,8,9
+    soma=soma + int(verifica[indice]) *  x
+    indice+=1
+ # o segundo for completa a soma para determinar primeiro dígito  
+   
+ calculaprimeiro=soma % 11
+ soma=0
+ indice=0
+ verifica = verifica[0:12]+str(calculaprimeiro)
+ # calculando segundo dígito
+ 
+ for x in range(5,10,1): # 5, 6, 7, 8 e 9
+   soma=soma + int(verifica[indice]) *  x
+   indice+=1
+ for  x in range(2,10,1): #2,3,4,5,6,7,8,9
+    soma=soma + int(verifica[indice]) *  x
+    indice+=1 
+ # o segundo for completa a soma para determinar segundo dígito   
+ calculasegundo=soma % 11
+ verifica = verifica+str(calculasegundo)
+ if verifica1==verifica[12:14]:
+   verifica=verifica[0:2]+'.'+verifica[2:5]+'.'+verifica[5:8]+'/'+verifica[8:12]+'-'+verifica[12:15]
+   print(f'digito verificador calculado é válido: {verifica} ' )      
+   verifica = verifica[0:13]+'-'+str(calculaprimeiro)+str(calculasegundo)
+   print(f'digito verificador calculado é = {str(calculaprimeiro)+str(calculasegundo)}' )
+ else:
+   print(f'digito verificador do CNPJ calculado é inválido =  {verifica1}')  
+   print(f'segundo digito  = {calculasegundo}')   
+ resp=continua()
+ if resp=='N':
+   break
+
