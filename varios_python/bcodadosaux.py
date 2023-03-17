@@ -4,7 +4,7 @@ if con.cursor():
     db_info = con.get_server_info()
     print("conectado ao servidor MySql versão ",db_info)
     cursor = con.cursor()
-    sql= ('''create database processosaux
+    sql= ('''create database processosaux 
           default character set utf8
           default collate utf8_general_ci;
           ''') # criar banco de dados

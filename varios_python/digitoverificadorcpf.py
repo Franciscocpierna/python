@@ -1,9 +1,35 @@
 
 from time import sleep 
 
-'''Outra regra muito importante é que CPFs com números iguais como: 111.111.111-11 , 222.222.222-22 
-entre outros, são CPFs válidos pelo algoritmo mas
-não existem no registro oficial. Assim esse tipo de CPF não pode ser usado'
+'''No caso do CNPJ, o DV módulo 11 corresponde ao resto da divisão por 11 do somatório da multiplicação de cada algarismo da base respectivamente por 9, 8, 7, 6, 5, 4, 3, 2, 9, 8, 7, 6 e 5, a partir da unidade. O resto 10 é considerado 0 (algumas instituições, como o Banco do Brasil, tratam o 10, em seus números de contas, como "X").
+
+O DV módulo 10 corresponde ao número que faltar para inteirar múltiplo de 10, em relação ao somatório da multiplicação de cada algarismo da base respectivamente por 2, 1, 2, 1, 2, 1 e 2, a partir da unidade, sendo que em cada multiplicação valores superiores a 9 deverão sofrer a operação "noves fora".
+
+Veja, abaixo, exemplo de cálculo de DV módulo 11 (o mais usado pelos bancos) e de DV módulo 10 para o CNPJ nº 18781203/0001:
+
+1  8  7  8  1  2  0  3  0  0  0  1 = 2               
+x  x  x  x  x  x  x  x  x  x  x  x               
+6  7  8  9  2  3  4  5  6  7  8  9            
+----------------------------------                   
+6+56+56+72+ 2+ 6+ 0+15+ 0+ 0+ 0+ 9 = 222÷11=20, com resto 2
+
+1  8  7  8  1  2  0  3  0  0  0  1  2 = 8
+x  x  x  x  x  x  x  x  x  x  x  x  x
+5  6  7  8  9  2  3  4  5  6  7  8  9
+-------------------------------------
+5+48+49+64+ 9+ 4+ 0+12+ 0+ 0+ 0+ 8+18 = 217÷11=19, com resto 8
+
+Portanto, CNPJ+DV = 18.781.203/0001-28
+
+-------------------------------------------------------
+
+Conferência do oitavo dígito:
+
+1  8  7  8  1  2  0  =  3
+x  x  x  x  x  x  x
+2  1  2  1  2  1  2
+-------------------
+2+ 8+ 5*+8+ 2+ 2 +0 = 27, para 30 = 3 (*noves fora)
 '''
 def continua():
     while True:
