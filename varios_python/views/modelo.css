@@ -1,0 +1,38 @@
+body {
+    background-color: rgb(56, 118, 168);
+
+}
+
+body > article > p {
+  color: white;  
+  margin-right: auto;
+  text-align: justify;
+  width: 500px;
+} 
+
+a {
+    background-color: aqua;
+} 
+ a:hover {
+    background-color: blue;
+ }
+
+ .texto {
+    text-align: left;
+    width: 500px;
+ }
+
+ aside img {
+    width: 60px; 
+    display: block; 
+    float: left;
+    margin-right: 10px;
+}
+h1{
+    margin: auto;
+    text-align: center;
+}
+
+h1:hover {
+    background-color: bisque;
+}
