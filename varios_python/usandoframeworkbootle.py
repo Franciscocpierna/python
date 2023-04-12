@@ -1,6 +1,7 @@
 from bottle import route, run, template, static_file
 
 #@route('/static/<filename>') # rota achar arquivos estaticos
+@route('/hello/static/<filename>')
 @route('/static/<filename>')
 def server_static(filename):
     return static_file(filename, root='./views/static')
