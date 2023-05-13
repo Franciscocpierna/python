@@ -1,5 +1,5 @@
-username="João"
-password="joaouser"
+username="Maria"
+password="mariauser"
 
 usuariosautorizados={"Maria":"mariauser", "João":"joaouser","Antonio":"Antoniouser" }
 if username in  usuariosautorizados and password== usuariosautorizados[username]:
