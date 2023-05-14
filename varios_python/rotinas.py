@@ -58,3 +58,4 @@ def continua():
             else:
                  return r
 
+print(__name__)

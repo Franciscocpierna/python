@@ -1,4 +1,5 @@
 
+
 # polimorfismo
 class mae():
   def apresentacao(self):
@@ -10,20 +11,21 @@ class filha(mae):
 
 class neta(filha):
   pass
- 
+    
 
-mae1 = mae()
-mae1.apresentacao()
+mae = mae()
+#mae.apresentacao()
   
-filha1= filha()  
-filha1.apresentacao()
+filha= filha()  
+#filha.apresentacao()
 
-neta1 = neta() 
-neta1.apresentacao()
+neta = neta() 
+#neta.apresentacao()
 
-
-
-
+lista = [mae, filha, neta]
+for x in lista:
+  x.apresentacao()
+   
 
 '''class Pessoa():
   #def __init__(self,*nome):
